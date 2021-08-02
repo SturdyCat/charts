@@ -5,7 +5,7 @@ metadata:
   labels:
     app: {{ template "cp-schema-registry.name" . }}
     chart: {{ template "cp-schema-registry.chart" . }}
-    release: {{ .Release.Name }}
+    
     heritage: {{ .Release.Service }}
 spec:
   ports:
@@ -24,7 +24,7 @@ spec:
 
   selector:
     app: {{ template "cp-schema-registry.name" . }}
-    release: {{ .Release.Name }}
+    
 
   {{- if .Values.nodeport.enabled }}
   type: NodePort

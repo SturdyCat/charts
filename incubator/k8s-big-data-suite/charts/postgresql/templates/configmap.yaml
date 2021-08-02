@@ -5,7 +5,7 @@ metadata:
   labels:
     app: {{ template "postgresql.name" . }}
     chart: {{ template "postgresql.chart" . }}
-    release: {{ .Release.Name }}
+    
     heritage: {{ .Release.Service }}
 data:
   {{- if .Values.metrics.customMetrics }}

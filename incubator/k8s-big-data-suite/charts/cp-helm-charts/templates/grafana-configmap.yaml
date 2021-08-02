@@ -9,7 +9,7 @@ metadata:
     {{- end }}
     app: {{ template "cp-helm-charts.name" . }}
     chart: {{ template "cp-helm-charts.chart" . }}
-    release: {{ .Release.Name }}
+    
     heritage: {{ .Release.Service }}
 data:
   cp-helm-charts.json: |-

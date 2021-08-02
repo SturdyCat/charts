@@ -6,7 +6,7 @@ metadata:
   name: {{ template "nginx.name" . }}
   labels:
     app: {{ include "name" . }}
-    release: {{ .Release.Name }}
+    
 spec:
   ports:
     {{- if .Values.hadoop.enabled }}
@@ -40,7 +40,7 @@ spec:
 
   selector:
     app: {{ include "name" . }}
-    release: {{ .Release.Name }}
+    
   type: ClusterIP
 ---
 apiVersion: v1
@@ -49,7 +49,7 @@ metadata:
   name: {{ template "nginx.name" . }}
   labels:
     app: {{ include "name" . }}
-    release: {{ .Release.Name }}
+    
 data:
   default.conf: |
     {{- if .Values.hadoop.enabled }}
@@ -280,18 +280,18 @@ metadata:
   name: {{ template "nginx.name" . }}
   labels:
     app: {{ include "name" . }}
-    release: {{ .Release.Name }}
+    
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: {{ include "name" . }}
-      release: {{ .Release.Name }}
+      
   template:
     metadata:
       labels:
         app: {{ include "name" . }}
-        release: {{ .Release.Name }}
+        
       {{- if .Values.nginx.podAnnotations }}
       annotations:
 {{ toYaml .Values.nginx.podAnnotations | indent 8 }}

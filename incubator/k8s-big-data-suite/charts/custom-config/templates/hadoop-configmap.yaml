@@ -4,7 +4,7 @@ metadata:
   name: {{ .Values.customHadoopConfigName }}
   labels:
     chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
-    release: {{ .Release.Name }}
+    
 data:
   core-site.xml: |
     <?xml version="1.0"?>

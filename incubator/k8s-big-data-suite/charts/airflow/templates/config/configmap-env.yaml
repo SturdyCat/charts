@@ -5,7 +5,7 @@ metadata:
   labels:
     app: {{ include "airflow.labels.app" . }}
     chart: {{ include "airflow.labels.chart" . }}
-    release: {{ .Release.Name }}
+    
     heritage: {{ .Release.Service }}
 data:
   ## Force UTC timezone

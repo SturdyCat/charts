@@ -21,7 +21,7 @@ metadata:
   labels:
     app: {{ template "superset.name" . }}
     chart: {{ template "superset.chart" . }}
-    release: {{ .Release.Name }}
+    
     heritage: {{ .Release.Service }}
 spec:
   type: {{ .Values.service.type }}
@@ -36,4 +36,4 @@ spec:
       name: http
   selector:
     app: {{ template "superset.name" . }}
-    release: {{ .Release.Name }}
+    

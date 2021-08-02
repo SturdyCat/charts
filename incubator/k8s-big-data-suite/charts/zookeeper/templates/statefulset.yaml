@@ -5,7 +5,7 @@ metadata:
   labels:
     app: {{ template "zookeeper.name" . }}
     chart: {{ template "zookeeper.chart" . }}
-    release: {{ .Release.Name }}
+    
     heritage: {{ .Release.Service }}
     component: server
 spec:
@@ -14,7 +14,7 @@ spec:
   selector:
     matchLabels:
       app: {{ template "zookeeper.name" . }}
-      release: {{ .Release.Name }}
+      
       component: server
   updateStrategy:
 {{ toYaml .Values.updateStrategy | indent 4 }}
@@ -22,7 +22,7 @@ spec:
     metadata:
       labels:
         app: {{ template "zookeeper.name" . }}
-        release: {{ .Release.Name }}
+        
         component: server
       {{- if .Values.podLabels }}
         ## Custom pod labels
@@ -180,7 +180,7 @@ spec:
         {{- if .Values.exporters.jmx.enabled }}
         - name: config-jmx-exporter
           configMap:
-            name: {{ .Release.Name }}-jmx-exporter
+            name: jmx-exporter
         {{- end }}
         {{- if not .Values.persistence.enabled }}
         - name: data

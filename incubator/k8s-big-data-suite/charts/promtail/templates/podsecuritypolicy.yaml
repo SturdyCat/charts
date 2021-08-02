@@ -7,7 +7,7 @@ metadata:
     app: {{ template "promtail.name" . }}
     chart: {{ template "promtail.chart" . }}
     heritage: {{ .Release.Service }}
-    release: {{ .Release.Name }}
+    
 spec:
   privileged: false
   allowPrivilegeEscalation: false

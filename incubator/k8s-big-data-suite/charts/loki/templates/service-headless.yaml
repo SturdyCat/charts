@@ -6,7 +6,7 @@ metadata:
   labels:
     app: {{ template "loki.name" . }}
     chart: {{ template "loki.chart" . }}
-    release: {{ .Release.Name }}
+    
     heritage: {{ .Release.Service }}
     variant: headless
 spec:
@@ -21,4 +21,4 @@ spec:
 {{- end }}
   selector:
     app: {{ template "loki.name" . }}
-    release: {{ .Release.Name }}
+    

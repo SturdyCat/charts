@@ -9,7 +9,7 @@ metadata:
     {{- end }}
     app: {{ template "hdfs-k8s.datanode.name" . }}
     chart: {{ template "hdfs-k8s.subchart" . }}
-    release: {{ .Release.Name }}
+    
 data:
   datanode.json: |-
 {{ .Files.Get "dashboards/datanode.json" | indent 4 }}

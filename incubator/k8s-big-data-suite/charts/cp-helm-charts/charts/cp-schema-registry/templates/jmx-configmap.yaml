@@ -6,7 +6,7 @@ metadata:
   labels:
     app: {{ template "cp-schema-registry.name" . }}
     chart: {{ template "cp-schema-registry.chart" . }}
-    release: {{ .Release.Name }}
+    
     heritage: {{ .Release.Service }}
 data:
   jmx-schema-registry-prometheus.yml: |+

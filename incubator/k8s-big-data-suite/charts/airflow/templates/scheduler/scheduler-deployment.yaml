@@ -10,7 +10,7 @@ metadata:
     app: {{ include "airflow.labels.app" . }}
     component: scheduler
     chart: {{ include "airflow.labels.chart" . }}
-    release: {{ .Release.Name }}
+    
     heritage: {{ .Release.Service }}
     {{- if .Values.scheduler.labels }}
     {{- toYaml .Values.scheduler.labels | nindent 4 }}
@@ -27,7 +27,7 @@ spec:
     matchLabels:
       app: {{ include "airflow.labels.app" . }}
       component: scheduler
-      release: {{ .Release.Name }}
+      
   template:
     metadata:
       annotations:
@@ -51,7 +51,7 @@ spec:
       labels:
         app: {{ include "airflow.labels.app" . }}
         component: scheduler
-        release: {{ .Release.Name }}
+        
         {{- if .Values.scheduler.podLabels }}
         {{- toYaml .Values.scheduler.podLabels | nindent 8 }}
         {{- end }}

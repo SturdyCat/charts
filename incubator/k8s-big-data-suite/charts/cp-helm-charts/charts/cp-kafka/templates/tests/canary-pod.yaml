@@ -7,7 +7,7 @@ metadata:
     "helm.sh/hook-delete-policy": "before-hook-creation,hook-succeeded"
 spec:
   containers:
-  - name: {{ .Release.Name }}-canary
+  - name: canary
     image: "{{ .Values.image }}:{{ .Values.imageTag }}"
     imagePullPolicy: "{{ .Values.imagePullPolicy }}"
     command:

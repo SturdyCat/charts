@@ -6,13 +6,13 @@ metadata:
   labels:
     app: {{ template "postgresql.name" . }}
     chart: {{ template "postgresql.chart" . }}
-    release: {{ .Release.Name }}
+    
     heritage: {{ .Release.Service }}
 spec:
   podSelector:
     matchLabels:
       app: {{ template "postgresql.name" . }}
-      release: {{ .Release.Name }}
+      
   ingress:
     # Allow inbound connections
     - ports:

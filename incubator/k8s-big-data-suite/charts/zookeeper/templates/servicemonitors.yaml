@@ -9,7 +9,7 @@ metadata:
   labels:
     app: {{ template "zookeeper.name" . }}
     chart: {{ template "zookeeper.chart" . }}
-    release: {{ .Release.Name }}
+    
     heritage: {{ .Release.Service }}
 spec:
   endpoints:
@@ -23,7 +23,7 @@ spec:
   selector:
     matchLabels:
       app: {{ include "zookeeper.name" . }}
-      release: {{ .Release.Name }}
+      
   namespaceSelector:
     matchNames:
       - {{ .Release.Namespace }}
@@ -41,7 +41,7 @@ metadata:
   labels:
     app: {{ template "zookeeper.name" . }}
     chart: {{ template "zookeeper.chart" . }}
-    release: {{ .Release.Name }}
+    
     heritage: {{ .Release.Service }}
 spec:
   endpoints:
@@ -55,7 +55,7 @@ spec:
   selector:
     matchLabels:
       app: {{ include "zookeeper.name" . }}
-      release: {{ .Release.Name }}
+      
   namespaceSelector:
     matchNames:
       - {{ .Release.Namespace }}

@@ -24,7 +24,7 @@ metadata:
   labels:
     app: {{ template "superset.name" . }}
     chart: {{ template "superset.chart" . }}
-    release: {{ .Release.Name }}
+    
     heritage: {{ .Release.Service }}
 {{- with .Values.ingress.annotations }}
   annotations:

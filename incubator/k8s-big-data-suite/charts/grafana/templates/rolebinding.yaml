@@ -8,7 +8,7 @@ metadata:
     app: {{ template "grafana.name" . }}
     chart: {{ .Chart.Name }}-{{ .Chart.Version }}
     heritage: {{ .Release.Service }}
-    release: {{ .Release.Name }}
+    
 {{- with .Values.annotations }}
   annotations:
 {{ toYaml . | indent 4 }}

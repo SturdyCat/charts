@@ -7,7 +7,7 @@ metadata:
   labels:
     app: {{ template "promtail.name" . }}
     chart: {{ template "promtail.chart" . }}
-    release: {{ .Release.Name }}
+    
     heritage: {{ .Release.Service }}
     {{- with .Values.syslogService.labels }}
     {{- toYaml . | nindent 4 }}
@@ -46,5 +46,5 @@ spec:
 {{- end }}
   selector:
     app: {{ template "promtail.name" . }}
-    release: {{ .Release.Name }}
+    
 {{- end }}

@@ -5,19 +5,24 @@ metadata:
   labels:
     app: {{ template "cp-kafka.name" . }}
     chart: {{ template "cp-kafka.chart" . }}
-    release: {{ .Release.Name }}
+    
     heritage: {{ .Release.Service }}
 spec:
   serviceName: {{ template "cp-kafka.fullname" . }}-headless
   podManagementPolicy: {{ .Values.podManagementPolicy }}
   replicas: {{ default 3 .Values.brokers }}
+  selector:
+    matchLabels:
+      app: {{ template "cp-kafka.fullname" . }}
+      chart: {{ template "cp-kafka.chart" . }}
   updateStrategy:
     type: {{ .Values.updateStrategy }}
   template:
     metadata:
       labels:
         app: {{ template "cp-kafka.name" . }}
-        release: {{ .Release.Name }}
+        chart: {{ template "cp-kafka.chart" . }}
+        
       {{- if or .Values.podAnnotations .Values.prometheus.jmx.enabled }}
       annotations:
       {{- range $key, $value := .Values.podAnnotations }}

@@ -7,7 +7,7 @@ metadata:
     app: {{ include "airflow.labels.app" . }}
     component: worker
     chart: {{ include "airflow.labels.chart" . }}
-    release: {{ .Release.Name }}
+    
     heritage: {{ .Release.Service }}
     {{- range $key, $value := .Values.serviceMonitor.selector }}
     {{ $key }}: {{ $value | quote }}
@@ -17,7 +17,7 @@ spec:
     matchLabels:
       app: {{ include "airflow.labels.app" . }}
       component: web
-      release: {{ .Release.Name }}
+      
   endpoints:
   - port: web
     path: {{ .Values.serviceMonitor.path }}

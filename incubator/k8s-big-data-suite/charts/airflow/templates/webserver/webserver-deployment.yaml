@@ -10,7 +10,7 @@ metadata:
     app: {{ include "airflow.labels.app" . }}
     component: web
     chart: {{ include "airflow.labels.chart" . }}
-    release: {{ .Release.Name }}
+    
     heritage: {{ .Release.Service }}
     {{- if .Values.web.labels }}
     {{- toYaml .Values.web.labels | nindent 4 }}
@@ -28,7 +28,7 @@ spec:
     matchLabels:
       app: {{ include "airflow.labels.app" . }}
       component: web
-      release: {{ .Release.Name }}
+      
   template:
     metadata:
       annotations:
@@ -50,7 +50,7 @@ spec:
       labels:
         app: {{ include "airflow.labels.app" . }}
         component: web
-        release: {{ .Release.Name }}
+        
         {{- if .Values.web.podLabels }}
         {{- toYaml .Values.web.podLabels | nindent 8 }}
         {{- end }}

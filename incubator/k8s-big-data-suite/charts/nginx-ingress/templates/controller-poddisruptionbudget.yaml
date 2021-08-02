@@ -7,13 +7,13 @@ metadata:
     chart: {{ template "nginx-ingress.chart" . }}
     component: "{{ .Values.controller.name }}"
     heritage: {{ .Release.Service }}
-    release: {{ .Release.Name }}
+    
   name: {{ template "nginx-ingress.controller.fullname" . }}
 spec:
   selector:
     matchLabels:
       app: {{ template "nginx-ingress.name" . }}
-      release: {{ .Release.Name }}
+      
       component: "{{ .Values.controller.name }}"
   minAvailable: {{ .Values.controller.minAvailable }}
 {{- end }}

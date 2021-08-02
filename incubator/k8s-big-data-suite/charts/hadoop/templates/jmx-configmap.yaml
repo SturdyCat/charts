@@ -6,7 +6,7 @@ metadata:
   labels:
     app: {{ template "hdfs-k8s.name" . }}
     chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
-    release: {{ .Release.Name }}
+    
 data:
   hdfs-nn-config.yml: |-
     hostPort: localhost:{{ .Values.global.namenodeJmxPort }}

@@ -9,7 +9,7 @@ metadata:
     {{- end }}
     app: {{ template "hdfs-k8s.journalnode.name" . }}
     chart: {{ template "hdfs-k8s.subchart" . }}
-    release: {{ .Release.Name }}
+    
 data:
   journalnode.json: |-
 {{ .Files.Get "dashboards/journalnode.json" | indent 4 }}

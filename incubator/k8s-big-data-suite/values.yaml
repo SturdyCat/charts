@@ -12,7 +12,7 @@
 # 拉取镜像 secret, 此配置为腾讯云默认值
 imagePullSecrets: &imagePullSecrets  "qcloudregistrykey"
 # 默认 StorageClass, 此配置为腾讯云默认值
-defaultStorageClass: &defaultStorageClass "cbs"
+defaultStorageClass: &defaultStorageClass "longhorn"
 
 # (腾讯云专属) 是否创建 ssd storage class
 ssdStorageClassEnabled: false
@@ -20,7 +20,7 @@ ssdStorageClassEnabled: false
 cloudPremiumStorageClassEnabled: false
 
 # 是否开启 Ingress
-ingressEnabled: true
+ingressEnabled: false
 
 # Ingress 类型, 目前支持 QCLOUD|NGINX
 # QCLOUD 为腾讯云LB, NGINX 为 nginx-ingress (需要 nginx-ingress.enabled 设置为 true, 默认为 true)
@@ -30,7 +30,7 @@ ingressType: "NGINX"
 domain: &domain "xxx.com"
 
 airflow:
-  enabled: true
+  enabled: false
   web:
     baseUrl: "http://localhost:8080/airflow"
     affinity:
@@ -58,7 +58,7 @@ airflow:
 
 client:
   # 运维工具容器, 这里面有 hadoop,hive,spark-shell 等命令行
-  enabled: true
+  enabled: false
   client:
     imageName: "ccr.ccs.tencentyun.com/k8s-big-data/client"
     imageTag: "v2006241010"
@@ -73,7 +73,7 @@ client:
   imagePullSecrets: *imagePullSecrets
 
 spark:
-  enabled: true
+  enabled: false
   name: "spark"
   sparkMaster: "k8s://https://kubernetes.default.svc:443"
   imagePullSecrets: *imagePullSecrets
@@ -101,7 +101,7 @@ spark:
 
 zookeeper:
   # 文档: https://github.com/helm/charts/tree/master/incubator/zookeeper
-  enabled: true
+  enabled: false
   image:
     repository: ccr.ccs.tencentyun.com/k8s-big-data/k8szk
     tag: v3
@@ -144,7 +144,7 @@ zookeeper:
 
 hive:
   # 此为 K8sBigData 自行维护版本
-  enabled: true
+  enabled: false
   global:
     metrics:
       enabled: true
@@ -162,7 +162,7 @@ hive:
 
 impala:
   # impala 没有开源版本 helm, 此为 K8sBigData 自行维护版本
-  enabled: true
+  enabled: false
   imagePullSecrets: *imagePullSecrets
   imageName: "ccr.ccs.tencentyun.com/k8s-big-data/impala"
   imageTag: "3.3-201912292037"
@@ -183,7 +183,7 @@ impala:
 kudu:
   # 文档: 根据 https://github.com/apache/kudu/tree/master/kubernetes/helm/kudu 重写
   # 主要为了提升可读性
-  enabled: true
+  enabled: false
   image:
     repository: "ccr.ccs.tencentyun.com/k8s-big-data/kudu"
     tag: 1.11-v14
@@ -205,7 +205,7 @@ kudu:
     storage:
       storageClass: *defaultStorageClass
       count: 1
-      size: 100Gi
+      size: 50Gi
       # 是否使用宿主机磁盘
       enableHostPath: false
       # 注意这里路径需要配合宿主机设置
@@ -219,7 +219,7 @@ kudu:
 
 postgresql:
   # 文档: https://github.com/mapreducelab/bigdata-helm-charts/tree/develop/postgresql
-  enabled: true
+  enabled: false
   postgresUser: postgres
   postgresPassword: postgres
   metrics:
@@ -241,7 +241,7 @@ postgresql:
 postgresql-ha:
   # 文档: https://hub.helm.sh/charts/bitnami/postgresql-ha
   # 经过可用性优化
-  enabled: true
+  enabled: false
   imagePullSecrets: *imagePullSecrets
   postgresqlImage:
     registry: ccr.ccs.tencentyun.com
@@ -262,7 +262,7 @@ postgresql-ha:
   persistence:
     enabled: true
     storageClass: *defaultStorageClass
-    size: 50Gi
+    size: 20Gi
   postgresql:
     username: postgresql
     password: postgresql
@@ -291,7 +291,7 @@ postgresql-ha:
 hbase:
   # 文档: https://github.com/warp-poke/hbase-helm
   # 经过剪裁, 只留了 HBase 部分
-  enabled: true
+  enabled: false
   master:
     replicas: 2
   region:
@@ -299,7 +299,7 @@ hbase:
 
 elasticsearch:
   # 文档: https://github.com/elastic/helm-charts/tree/master/elasticsearch
-  enabled: true
+  enabled: false
   image: "ccr.ccs.tencentyun.com/k8s-big-data/elasticsearch"
   imageTag: "6.4.0"
   imagePullSecrets: *imagePullSecrets
@@ -319,7 +319,7 @@ elasticsearch:
 
 kibana:
   # 文档: https://github.com/elastic/helm-charts/tree/master/kibana
-  enabled: true
+  enabled: false
   image: "ccr.ccs.tencentyun.com/k8s-big-data/kibana"
   imageTag: "6.4.0"
   imagePullSecrets: *imagePullSecrets
@@ -330,7 +330,7 @@ kibana:
 
 prometheus-operator:
   # 文档: https://github.com/prometheus-operator/prometheus-operator
-  enabled: true
+  enabled: false
   grafana:
     enabled: true
     # Deploy default dashboards.
@@ -345,7 +345,7 @@ prometheus-operator:
             accessModes: ["ReadWriteOnce"]
             resources:
               requests:
-                storage: 50Gi
+                storage: 20Gi
       image:
         repository: ccr.ccs.tencentyun.com/k8s-big-data/alertmanager
         tag: v0.19.0
@@ -387,7 +387,7 @@ prometheus-operator:
             accessModes: ["ReadWriteOnce"]
             resources:
               requests:
-                storage: 50Gi
+                storage: 20Gi
 
   nodeExporter:
     serviceMonitor:
@@ -397,7 +397,7 @@ prometheus-operator:
 
 prometheus-node-exporter:
   # 文档: https://github.com/prometheus/node_exporter/
-  enabled: true
+  enabled: false
   image:
     repository: ccr.ccs.tencentyun.com/k8s-big-data/node-exporter
     tag: v0.18.1
@@ -416,7 +416,7 @@ prometheus-node-exporter:
 
 kube-state-metrics:
   # 文档: https://github.com/kubernetes/kube-state-metrics/
-  enabled: true
+  enabled: false
   image:
     repository: ccr.ccs.tencentyun.com/k8s-big-data/kube-state-metrics
     tag: v1.8.0
@@ -427,7 +427,7 @@ kube-state-metrics:
 
 grafana:
   # 文档: https://github.com/helm/charts/tree/master/stable/grafana
-  enabled: true
+  enabled: false
   image:
     repository: ccr.ccs.tencentyun.com/k8s-big-data/grafana
     # 如果使用tps版本grafana，则tag为6.4.2-tps2
@@ -516,7 +516,7 @@ grafana:
 
 sparkoperator:
   # 文档: https://github.com/GoogleCloudPlatform/spark-on-k8s-operator
-  enabled: true
+  enabled: false
   operatorImageName: ccr.ccs.tencentyun.com/k8s-big-data/spark-operator
   operatorVersion: v1beta2-1.1.1-2.4.5
   sparkJobNamespace: ""
@@ -542,7 +542,7 @@ sparkoperator:
 
 hadoop:
   # 原始Helm(做了一些可用性优化): https://github.com/apache-spark-on-k8s/kubernetes-HDFS
-  enabled: true
+  enabled: false
   global:
     # enable root as proxy user
     enableProxyUserRoot: false
@@ -558,7 +558,7 @@ hadoop:
     #    dataNodeHostPath: ["/data1/hdfs", "/data2/hdfs", "/data3/hdfs"]
     #    建议多挂几块盘提升IO吞吐
     dataNodeHostPath:
-      - /data/hdfs # 注意, 这里根据实际挂盘情况情况做修改
+      - /var/lib/hdfs # 注意, 这里根据实际挂盘情况情况做修改
     # 高性能盘 [SSD]
     #dataNodeHostPathSsd:
     #  - /mnt/vdh
@@ -568,7 +568,7 @@ hadoop:
       imageTag: 0.12.0-openjdk
   hdfs-namenode-k8s:
     persistence:
-      size: 100Gi
+      size: 50Gi
     nodeSelector: {}
     hadoopHeapSize: "1024"
     resources:
@@ -579,7 +579,7 @@ hadoop:
       enableNodePort: false
   hdfs-journalnode-k8s:
     persistence:
-      size: 50Gi
+      size: 20Gi
     nodeSelector:
       storage: "true"
     hadoopHeapSize: "1024"
@@ -598,11 +598,11 @@ hadoop:
 
 custom-config:
   # 如果不部署 HDFS, 而使用外部 HDFS, 可以用这个配置
-  enabled: true
+  enabled: false
 
 volcano:
   # 文档: https://github.com/volcano-sh/volcano/tree/master/installer/helm/chart/volcano
-  enabled: true
+  enabled: false
   basic:
     image_tag_version: "v0.4.0"
     busybox_image: "ccr.ccs.tencentyun.com/k8s-big-data/busybox:1.31.1"
@@ -612,7 +612,7 @@ volcano:
 
 flink-operator:
   # 文档: https://github.com/GoogleCloudPlatform/flink-on-k8s-operator/blob/master/docs/user_guide.md
-  enabled: true
+  enabled: false
   imagePullSecrets: *imagePullSecrets
   flinkOperatorNamespace: "default"
   operatorImage:
@@ -623,7 +623,7 @@ flink-operator:
 cp-helm-charts:
   # 文档: https://github.com/confluentinc/cp-helm-charts
   # 开启 kafka 必须将 zookeeper 也开启
-  enabled: true
+  enabled: false
   cp-kafka:
     brokers: 3
     image: ccr.ccs.tencentyun.com/k8s-big-data/cp-kafka
@@ -635,7 +635,7 @@ cp-helm-charts:
       enabled: true
       firstListenerPort: 31130
     persistence:
-      size: 50Gi
+      size: 20Gi
       storageClass: *defaultStorageClass
     prometheus:
       jmx:
@@ -691,7 +691,7 @@ cp-helm-charts:
 
 nginx-ingress:
   # 文档: https://github.com/kubernetes/ingress-nginx/tree/master/charts/ingress-nginx
-  enabled: true
+  enabled: false
   metrics:
     enabled: true
   controller:
@@ -709,7 +709,7 @@ nginx-ingress:
 
 nginx:
   # nginx 反向代理
-  enabled: true
+  enabled: false
   image:
     repository: ccr.ccs.tencentyun.com/k8s-big-data/nginx
     tag: 1.17.8
@@ -722,7 +722,7 @@ mist:
   # 文档: https://github.com/Hydrospheredata/mist
   # 此为 Spark serverless proxy 工具
   # 此 Helm 为自行维护版本
-  enabled: true
+  enabled: false
   imagePullSecrets: *imagePullSecrets
   image:
     repository: ccr.ccs.tencentyun.com/k8s-big-data/mist
@@ -738,7 +738,7 @@ mist:
 
 superset:
   # 文档: https://github.com/apache/incubator-superset/tree/master/helm/superset
-  enabled: true
+  enabled: false
   imagePullSecrets: *imagePullSecrets
   image:
     repository: ccr.ccs.tencentyun.com/k8s-big-data/superset
@@ -771,12 +771,12 @@ superset:
   nodeSelector: {}
 
 loki:
-  enabled: true
+  enabled: false
   image:
     repository: ccr.ccs.tencentyun.com/k8s-big-data/loki
     tag: 1.6.0
   persistence:
-    size: 100Gi
+    size: 50Gi
     storageClassName: *defaultStorageClass
   config:
     schema_config:
@@ -793,7 +793,7 @@ loki:
       retention_period: 24h
 
 promtail:
-  enabled: true
+  enabled: false
   image:
     repository: ccr.ccs.tencentyun.com/k8s-big-data/promtail
     tag: 1.6.0

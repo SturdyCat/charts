@@ -6,7 +6,7 @@ metadata:
   labels:
     app: {{ template "hdfs-k8s.datanode.name" . }}
     chart: {{ template "hdfs-k8s.subchart" . }}
-    release: {{ .Release.Name }}
+    
 spec:
   endpoints:
   - port: metrics
@@ -27,7 +27,7 @@ spec:
   selector:
     matchLabels:
       app: {{ template "hdfs-k8s.datanode.name" . }}
-      release: {{ .Release.Name }}
+      
   namespaceSelector:
     matchNames:
       - {{ .Release.Namespace }}

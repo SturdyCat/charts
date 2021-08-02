@@ -7,7 +7,7 @@ metadata:
     app: {{ include "airflow.labels.app" . }}
     component: worker
     chart: {{ include "airflow.labels.chart" . }}
-    release: {{ .Release.Name }}
+    
     heritage: {{ .Release.Service }}
 spec:
   {{- if .Values.workers.podDisruptionBudget.maxUnavailable }}
@@ -20,5 +20,5 @@ spec:
     matchLabels:
       app: {{ include "airflow.labels.app" . }}
       component: worker
-      release: {{ .Release.Name }}
+      
 {{- end }}

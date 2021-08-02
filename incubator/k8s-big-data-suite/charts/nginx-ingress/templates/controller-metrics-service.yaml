@@ -16,7 +16,7 @@ metadata:
     chart: {{ template "nginx-ingress.chart" . }}
     component: "{{ .Values.controller.name }}"
     heritage: {{ .Release.Service }}
-    release: {{ .Release.Name }}
+    
   name: {{ template "nginx-ingress.controller.fullname" . }}-metrics
 spec:
 {{- if not .Values.controller.metrics.service.omitClusterIP }}
@@ -42,6 +42,6 @@ spec:
   selector:
     app: {{ template "nginx-ingress.name" . }}
     component: "{{ .Values.controller.name }}"
-    release: {{ .Release.Name }}
+    
   type: "{{ .Values.controller.metrics.service.type }}"
 {{- end }}

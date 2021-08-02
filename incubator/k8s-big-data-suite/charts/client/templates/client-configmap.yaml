@@ -5,7 +5,7 @@ metadata:
   labels:
     app: {{ include "client.fullname" . }}
     chart:  "{{ .Chart.Name }}-{{ .Chart.Version }}"
-    release: {{ .Release.Name }}
+    
 data:
   k8s_client.py: |-
 {{ .Files.Get .Values.script.k8sClientPath | indent 4 }}

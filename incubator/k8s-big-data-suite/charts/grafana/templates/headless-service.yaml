@@ -7,7 +7,7 @@ metadata:
   labels:
     app: {{ template "grafana.name" . }}
     chart: {{ template "grafana.chart" . }}
-    release: {{ .Release.Name }}
+    
     heritage: {{ .Release.Service }}
 {{- with .Values.annotations }}
   annotations:
@@ -17,6 +17,6 @@ spec:
   clusterIP: None
   selector:
     app: {{ template "grafana.name" . }}
-    release: {{ .Release.Name }}
+    
   type: ClusterIP
 {{- end }}

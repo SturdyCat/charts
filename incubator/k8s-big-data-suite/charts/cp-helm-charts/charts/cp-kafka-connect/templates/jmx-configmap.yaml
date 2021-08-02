@@ -6,7 +6,7 @@ metadata:
   labels:
     app: {{ template "cp-kafka-connect.name" . }}
     chart: {{ template "cp-kafka-connect.chart" . }}
-    release: {{ .Release.Name }}
+    
     heritage: {{ .Release.Service }}
 data:
   jmx-kafka-connect-prometheus.yml: |+

@@ -5,7 +5,7 @@ metadata:
   labels:
     app: {{ template "zookeeper.name" . }}
     chart: {{ template "zookeeper.chart" . }}
-    release: {{ .Release.Name }}
+    
     heritage: {{ .Release.Service }}
   annotations:
 {{- with .Values.service.annotations }}
@@ -39,4 +39,4 @@ spec:
 {{- end}}
   selector:
     app: {{ template "zookeeper.name" . }}
-    release: {{ .Release.Name }}
+    

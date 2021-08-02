@@ -9,7 +9,7 @@ metadata:
   labels:
     app: {{ template "cp-schema-registry.name" . }}
     chart: {{ template "cp-schema-registry.chart" . }}
-    release: {{ .Release.Name }}
+    
     heritage: {{ .Release.Service }}
 spec:
   endpoints:
@@ -55,5 +55,5 @@ spec:
     matchLabels:
       app: {{ template "cp-schema-registry.name" . }}
       chart: {{ template "cp-schema-registry.chart" . }}
-      release: {{ .Release.Name }}
+      
 {{- end }}

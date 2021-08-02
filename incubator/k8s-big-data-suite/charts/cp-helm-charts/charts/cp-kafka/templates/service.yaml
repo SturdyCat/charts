@@ -5,7 +5,7 @@ metadata:
   labels:
     app: {{ template "cp-kafka.name" . }}
     chart: {{ template "cp-kafka.chart" . }}
-    release: {{ .Release.Name }}
+    
     heritage: {{ .Release.Service }}
 spec:
   ports:
@@ -23,4 +23,4 @@ spec:
     {{- end }}
   selector:
     app: {{ template "cp-kafka.name" . }}
-    release: {{ .Release.Name }}
+    

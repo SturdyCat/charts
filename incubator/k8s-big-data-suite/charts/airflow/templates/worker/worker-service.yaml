@@ -8,7 +8,7 @@ metadata:
     app: {{ include "airflow.labels.app" . }}
     component: worker
     chart: {{ include "airflow.labels.chart" . }}
-    release: {{ .Release.Name }}
+    
     heritage: {{ .Release.Service }}
 spec:
   ports:

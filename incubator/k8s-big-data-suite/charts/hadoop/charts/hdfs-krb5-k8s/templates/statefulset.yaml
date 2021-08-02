@@ -6,7 +6,7 @@ metadata:
   labels:
     app: {{ template "hdfs-k8s.krb5.name" . }}
     chart: {{ template "hdfs-k8s.subchart" . }}
-    release: {{ .Release.Name }}
+    
   annotations:
     # TODO: Deprecated. Replace tolerate-unready-endpoints with
     # v1.Service.PublishNotReadyAddresses.
@@ -22,7 +22,7 @@ spec:
   clusterIP: None
   selector:
     app: {{ template "hdfs-k8s.krb5.name" . }}
-    release: {{ .Release.Name }}
+    
 ---
 apiVersion: apps/v1
 kind: StatefulSet
@@ -31,19 +31,19 @@ metadata:
   labels:
     app: {{ template "hdfs-k8s.krb5.name" . }}
     chart: {{ template "hdfs-k8s.subchart" . }}
-    release: {{ .Release.Name }}
+    
 spec:
   serviceName: {{ template "hdfs-k8s.krb5.fullname" . }}
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
       app: {{ template "hdfs-k8s.krb5.name" . }}
-      release: {{ .Release.Name }}
+      
   template:
     metadata:
       labels:
         app: {{ template "hdfs-k8s.krb5.name" . }}
-        release: {{ .Release.Name }}
+        
       {{- if .Values.podAnnotations }}
       annotations:
 {{ toYaml .Values.podAnnotations | indent 8 }}

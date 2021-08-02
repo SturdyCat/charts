@@ -6,7 +6,7 @@ metadata:
   labels:
     app: {{ template "hdfs-k8s.datanode.name" . }}
     chart: {{ template "hdfs-k8s.subchart" . }}
-    release: {{ .Release.Name }}
+    
 spec:
   ports:
   - port: 50010
@@ -20,7 +20,7 @@ spec:
   clusterIP: None
   selector:
     app: {{ template "hdfs-k8s.datanode.name" . }}
-    release: {{ .Release.Name }}
+    
 ---
 # Provides datanode helper scripts.
 apiVersion: v1
@@ -30,7 +30,7 @@ metadata:
   labels:
     app: {{ template "hdfs-k8s.datanode.name" . }}
     chart: {{ template "hdfs-k8s.subchart" . }}
-    release: {{ .Release.Name }}
+    
 data:
   check-status.sh: |
     #!/usr/bin/env bash
@@ -65,18 +65,19 @@ metadata:
   labels:
     app: {{ template "hdfs-k8s.datanode.name" . }}
     chart: {{ template "hdfs-k8s.subchart" . }}
-    release: {{ .Release.Name }}
+    
 spec:
   selector:
     matchLabels:
       app: {{ template "hdfs-k8s.datanode.name" . }}
       chart: {{ template "hdfs-k8s.subchart" . }}
-      release: {{ .Release.Name }}
+      
   template:
     metadata:
       labels:
         app: {{ template "hdfs-k8s.datanode.name" . }}
-        release: {{ .Release.Name }}
+        chart: {{ template "hdfs-k8s.subchart" . }}
+        
       {{- if .Values.podAnnotations }}
       annotations:
 {{ toYaml .Values.podAnnotations | indent 8 }}

@@ -6,7 +6,7 @@ metadata:
   labels:
     app: {{ template "hdfs-k8s.journalnode.name" . }}
     chart: {{ template "hdfs-k8s.subchart" . }}
-    release: {{ .Release.Name }}
+    
   annotations:
     # TODO: Deprecated. Replace tolerate-unready-endpoints with
     # v1.Service.PublishNotReadyAddresses.
@@ -24,7 +24,7 @@ spec:
   clusterIP: None
   selector:
     app: {{ template "hdfs-k8s.journalnode.name" . }}
-    release: {{ .Release.Name }}
+    
 ---
 apiVersion: policy/v1beta1
 kind: PodDisruptionBudget
@@ -33,12 +33,12 @@ metadata:
   labels:
     app: {{ template "hdfs-k8s.journalnode.name" . }}
     chart: {{ template "hdfs-k8s.subchart" . }}
-    release: {{ .Release.Name }}
+    
 spec:
   selector:
     matchLabels:
       app: {{ template "hdfs-k8s.journalnode.name" . }}
-      release: {{ .Release.Name }}
+      
   minAvailable: {{ div .Values.global.journalnodeQuorumSize 2 | add1 }}
 ---
 apiVersion: apps/v1
@@ -48,15 +48,20 @@ metadata:
   labels:
     app: {{ template "hdfs-k8s.journalnode.name" . }}
     chart: {{ template "hdfs-k8s.subchart" . }}
-    release: {{ .Release.Name }}
+    
 spec:
   serviceName: {{ template "hdfs-k8s.journalnode.fullname" . }}
   replicas: {{ .Values.global.journalnodeQuorumSize }}
+  selector:
+    matchLabels:
+      app: {{ template "hdfs-k8s.journalnode.name" . }}
+      chart: {{ template "hdfs-k8s.subchart" . }}
   template:
     metadata:
       labels:
         app: {{ template "hdfs-k8s.journalnode.name" . }}
-        release: {{ .Release.Name }}
+        chart: {{ template "hdfs-k8s.subchart" . }}
+        
       {{- if .Values.podAnnotations }}
       annotations:
 {{ toYaml .Values.podAnnotations | indent 8 }}

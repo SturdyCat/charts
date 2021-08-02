@@ -12,7 +12,7 @@ metadata:
   labels:
     app: {{ template "zookeeper.name" . }}
     chart: {{ template "zookeeper.chart" . }}
-    release: {{ .Release.Name }}
+    
     heritage: {{ .Release.Service }}
     component: jobs
     job: chroots
@@ -25,7 +25,7 @@ spec:
     metadata:
       labels:
         app: {{ template "zookeeper.name" . }}
-        release: {{ .Release.Name }}
+        
         component: jobs
         job: chroots
     spec:

@@ -8,7 +8,7 @@ metadata:
     app: {{ template "loki.name" . }}
     chart: {{ template "loki.chart" . }}
     heritage: {{ .Release.Service }}
-    release: {{ .Release.Name }}
+    
 {{- if .Values.rbac.pspEnabled }}
 rules:
 - apiGroups:      ['extensions']

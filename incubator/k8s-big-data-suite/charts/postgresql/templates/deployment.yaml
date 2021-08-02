@@ -5,7 +5,7 @@ metadata:
   labels:
     app: {{ template "postgresql.name" . }}
     chart: {{ template "postgresql.chart" . }}
-    release: {{ .Release.Name }}
+    
     heritage: {{ .Release.Service }}
 {{- with .Values.deploymentAnnotations }}
   annotations:
@@ -19,14 +19,14 @@ spec:
   selector:
     matchLabels:
       app: {{ template "postgresql.name" . }}
-      release: {{ .Release.Name }}
+      
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
         app: {{ template "postgresql.name" . }}
-        release: {{ .Release.Name }}
+        
 {{- with .Values.podAnnotations }}
       annotations:
 {{ toYaml . | indent 8 }}

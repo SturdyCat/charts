@@ -5,19 +5,19 @@ metadata:
   labels:
     app: {{ template "cp-schema-registry.name" . }}
     chart: {{ template "cp-schema-registry.chart" . }}
-    release: {{ .Release.Name }}
+    
     heritage: {{ .Release.Service }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
       app: {{ template "cp-schema-registry.name" . }}
-      release: {{ .Release.Name }}
+      
   template:
     metadata:
       labels:
         app: {{ template "cp-schema-registry.name" . }}
-        release: {{ .Release.Name }}
+        
       {{- if or .Values.podAnnotations .Values.prometheus.jmx.enabled }}
       annotations:
       {{- range $key, $value := .Values.podAnnotations }}
