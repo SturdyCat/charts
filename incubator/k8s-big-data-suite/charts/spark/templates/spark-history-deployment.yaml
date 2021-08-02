@@ -23,7 +23,7 @@ spec:
     component: "{{ .Release.Name }}-{{ .Values.history.component }}"
   type: {{ .Values.history.serviceType }}
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ template "history.fullname" . }}

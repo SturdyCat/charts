@@ -37,7 +37,7 @@ spec:
   selector:
     component: "{{ .Release.Name }}-{{ .Values.thirftserver.component }}"
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ template "thirftserver.fullname" . }}

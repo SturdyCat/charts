@@ -262,7 +262,7 @@ global:
   ## instance is active. Separated by the comma character. Used only when
   ## namenodeHAEnabled is set.
   ##
-  # zookeeperQuorumOverride: zk-0.zk-svc.default.svc.cluster.local:2181,zk-1.zk-svc.default.svc.cluster.local:2181,zk-2.zk-svc.default.svc.cluster.local:2181
+  # zookeeperQuorumOverride: zk-0.zk-svc:2181,zk-1.zk-svc:2181,zk-2.zk-svc:2181
 
   ## How many journal nodes to launch as a quorum. Used only when
   ## namenodeHAEnabled is set.

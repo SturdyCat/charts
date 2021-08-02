@@ -3,10 +3,10 @@
 {{- $servicePort := .Values.alertmanager.service.port -}}
 {{- $routePrefix := list .Values.alertmanager.alertmanagerSpec.routePrefix }}
 {{- $paths := .Values.alertmanager.ingress.paths | default $routePrefix -}}
-{{- if .Capabilities.APIVersions.Has "networking.k8s.io/v1beta1" }}
-apiVersion: networking.k8s.io/v1beta1
+{{- if .Capabilities.APIVersions.Has "networking.k8s.io/v1" }}
+apiVersion: networking.k8s.io/v1
 {{ else }}
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 {{ end -}}
 kind: Ingress
 metadata:

@@ -7,7 +7,7 @@ image:
   pullPolicy: IfNotPresent
 
 global:
-  # zookeeperQuorumOverride: zk-0.zk-svc.default.svc.cluster.local:2181,zk-1.zk-svc.default.svc.cluster.local:2181,zk-2.zk-svc.default.svc.cluster.local:2181
+  # zookeeperQuorumOverride: zk-0.zk-svc:2181,zk-1.zk-svc:2181,zk-2.zk-svc:2181
   zookeeperQuorumSize: 3
 
 master:

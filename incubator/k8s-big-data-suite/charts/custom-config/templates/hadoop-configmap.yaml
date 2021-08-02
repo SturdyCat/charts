@@ -16,7 +16,7 @@ data:
       </property>
       <property>
         <name>ha.zookeeper.quorum</name>
-        <value>kdl-zookeeper-1.kdl-zookeeper-headless.default.svc.cluster.local:2181,kdl-zookeeper-2.kdl-zookeeper-headless.default.svc.cluster.local:2181,kdl-zookeeper-0.kdl-zookeeper-headless.default.svc.cluster.local:2181</value>
+        <value>kdl-zookeeper-1.kdl-zookeeper-headless:2181,kdl-zookeeper-2.kdl-zookeeper-headless:2181,kdl-zookeeper-0.kdl-zookeeper-headless:2181</value>
       </property>
     </configuration>
 
@@ -45,23 +45,23 @@ data:
       </property>
       <property>
         <name>dfs.namenode.rpc-address.kdl-hadoop-hdfs-nn.nn0</name>
-        <value>kdl-hadoop-hdfs-nn-0.kdl-hadoop-hdfs-nn.default.svc.cluster.local:8020</value>
+        <value>kdl-hadoop-hdfs-nn-0.kdl-hadoop-hdfs-nn:8020</value>
       </property>
       <property>
         <name>dfs.namenode.rpc-address.kdl-hadoop-hdfs-nn.nn1</name>
-        <value>kdl-hadoop-hdfs-nn-1.kdl-hadoop-hdfs-nn.default.svc.cluster.local:8020</value>
+        <value>kdl-hadoop-hdfs-nn-1.kdl-hadoop-hdfs-nn:8020</value>
       </property>
       <property>
         <name>dfs.namenode.http-address.kdl-hadoop-hdfs-nn.nn0</name>
-        <value>kdl-hadoop-hdfs-nn-0.kdl-hadoop-hdfs-nn.default.svc.cluster.local:50070</value>
+        <value>kdl-hadoop-hdfs-nn-0.kdl-hadoop-hdfs-nn:50070</value>
       </property>
       <property>
         <name>dfs.namenode.http-address.kdl-hadoop-hdfs-nn.nn1</name>
-        <value>kdl-hadoop-hdfs-nn-1.kdl-hadoop-hdfs-nn.default.svc.cluster.local:50070</value>
+        <value>kdl-hadoop-hdfs-nn-1.kdl-hadoop-hdfs-nn:50070</value>
       </property>
       <property>
         <name>dfs.namenode.shared.edits.dir</name>
-        <value>qjournal://kdl-hadoop-hdfs-jn-1.kdl-hadoop-hdfs-jn.default.svc.cluster.local:8485;kdl-hadoop-hdfs-jn-2.kdl-hadoop-hdfs-jn.default.svc.cluster.local:8485;kdl-hadoop-hdfs-jn-0.kdl-hadoop-hdfs-jn.default.svc.cluster.local:8485/kdl-hadoop-hdfs-nn</value>
+        <value>qjournal://kdl-hadoop-hdfs-jn-1.kdl-hadoop-hdfs-jn:8485;kdl-hadoop-hdfs-jn-2.kdl-hadoop-hdfs-jn:8485;kdl-hadoop-hdfs-jn-0.kdl-hadoop-hdfs-jn:8485/kdl-hadoop-hdfs-nn</value>
       </property>
       <property>
         <name>dfs.ha.automatic-failover.enabled</name>

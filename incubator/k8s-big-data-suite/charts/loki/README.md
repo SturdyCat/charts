@@ -38,7 +38,7 @@ loki:
 
 Sample helm template for ingress:
 ```
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Ingress
 metadata:
 annotations:
